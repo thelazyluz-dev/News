@@ -38,7 +38,6 @@ def main():
     israel_news = fetch_rss("https://www.geektime.co.il/feed/")
     cars_news = fetch_rss("https://www.autocar.co.uk/rss")
     
-    # ברירת מחדל אם ה-RSS לא זמין כרגע
     if not global_news:
         global_news = [{'title': 'אזהרות חמורות מעולם המחקר: נקודת האל-חזור של AGI', 'link': 'https://www.technologyreview.com', 'desc': 'חוקרים בכירים מעלים דאגה עמוקה מכך שמודלי בינה מלאכותית מתחילים לפתח יכולות תכנון עצמאיות.'}]
     if not israel_news:
@@ -59,39 +58,43 @@ def main():
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap');
         body {{ font-family: 'Heebo', sans-serif; }}
-        @keyframes marquee {{
-            0% {{ transform: translateX(100%); }}
-            100% {{ transform: translateX(-100%); }}
+        @keyframes marqueeReverse {{
+            0% {{ transform: translateX(-100%); }}
+            100% {{ transform: translateX(100%); }}
         }}
-        .animate-marquee {{
+        .animate-marquee-rev {{
             display: inline-block;
-            animation: marquee 35s linear infinite;
+            animation: marqueeReverse 35s linear infinite;
         }}
     </style>
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen pb-12 selection:bg-cyan-500 selection:text-white">
 
-    <header class="border-b border-gray-800 bg-gray-900/95 backdrop-blur-md sticky top-0 z-50 shadow-xl">
-        <div class="max-w-4xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-3">
-            <h1 class="text-xl sm:text-2xl font-black bg-gradient-to-r from-red-500 via-yellow-500 to-cyan-400 bg-clip-text text-transparent text-center sm:text-right">
-                ⚡ AI Singularity & Polymarket Hub
+    <!-- Header -->
+    <header class="border-b border-gray-800/80 bg-gray-900/90 backdrop-blur-md sticky top-0 z-50 shadow-2xl">
+        <div class="max-w-4xl mx-auto px-4 py-3.5 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <h1 class="text-xl sm:text-2xl font-black bg-gradient-to-r from-red-500 via-yellow-400 to-cyan-400 bg-clip-text text-transparent text-center sm:text-right tracking-tight">
+                ⚡ AI Singularity & Live Hub
             </h1>
-            <div class="flex items-center gap-2">
-                <button onclick="manualRefresh()" class="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-xs px-3.5 py-2 rounded-xl font-bold flex items-center gap-1.5 shadow-lg transition transform active:scale-95">
+            <div class="flex items-center gap-2.5">
+                <button onclick="manualRefresh()" class="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-xs px-4 py-2 rounded-xl font-bold flex items-center gap-1.5 shadow-lg shadow-cyan-950/50 transition transform active:scale-95">
                     🔄 רענן עכשיו
                 </button>
-                <span id="update-time" class="text-xs bg-red-950/80 text-red-400 border border-red-800/60 px-3 py-1.5 rounded-full font-bold animate-pulse">
+                <span id="update-time" class="text-xs bg-red-950/80 text-red-400 border border-red-800/60 px-3 py-1.5 rounded-full font-bold shadow-inner">
                     🔴 מעודכן: {now}
                 </span>
             </div>
         </div>
-        <div class="bg-gray-900/90 border-t border-gray-800/80 py-2 px-4 overflow-hidden flex items-center whitespace-nowrap">
-            <span class="bg-red-600 text-white text-[10px] px-2 py-0.5 rounded font-bold ml-3 z-10 shadow">⚡ מבזקים</span>
+        
+        <!-- Ticker (Moving Right to Left) -->
+        <div class="bg-gray-900 border-t border-gray-800/80 py-2.5 px-4 overflow-hidden flex items-center whitespace-nowrap shadow-inner">
+            <span class="bg-gradient-to-r from-red-600 to-orange-600 text-white text-[10px] px-2.5 py-1 rounded-lg font-black ml-3 z-10 shadow">⚡ מבזקים חיים</span>
             <div class="overflow-hidden w-full relative">
-                <div class="animate-marquee text-xs text-gray-300 font-medium">
-                    <span class="ml-10">[{now}] פריצת דרך במודלי AGI חדשים מעוררת דיונים סוערים במעבדות המחקר.</span>
-                    <span class="ml-10">[{now}] ריאל מדריד נערכת למשחק העונה בסגל מלא לקראת האתגר באירופה.</span>
-                    <span class="ml-10">[{now}] שער הדולר והשווקים הפיננסיים מגיבים לתנודות הגלובליות.</span>
+                <div class="animate-marquee-rev text-xs text-gray-200 font-semibold">
+                    <span class="ml-12">[חדשות כלליות] שווקי ההון והכלכלה העולמית מגיבים לנתוני האינפלציה האחרונים.</span>
+                    <span class="ml-12">[טכנולוגיה] ענקיות התוכנה מכריזות על סטנדרטים חדשים לאבטחת תשתיות ענן.</span>
+                    <span class="ml-12">[ישראל] התפתחויות חדשות באקו-סיסטם המקומי ובתעשיית ההייטק.</span>
+                    <span class="ml-12">[ספורט] עדכונים חמים מליגת האלופות והספורט הבינלאומי.</span>
                 </div>
             </div>
         </div>
@@ -99,30 +102,32 @@ def main():
 
     <main class="max-w-4xl mx-auto px-4 py-6 space-y-6">
 
+        <!-- Financial Tickers -->
         <section class="grid grid-cols-3 gap-3">
-            <div class="bg-gray-900/90 border border-gray-800/80 p-3.5 rounded-2xl text-center shadow-lg">
-                <span class="text-[11px] text-gray-400 block mb-1">💱 שער הדולר</span>
+            <div class="bg-gradient-to-br from-gray-900 to-gray-900/60 border border-gray-800/80 p-4 rounded-2xl text-center shadow-xl hover:border-gray-700 transition">
+                <span class="text-[11px] text-gray-400 block mb-1 font-medium">💱 שער הדולר</span>
                 <span id="val-usd" class="text-sm sm:text-base font-black text-green-400">3.64 ₪</span>
-                <span class="text-[10px] text-green-400 block mt-0.5 font-bold">▲ +0.4%</span>
+                <span class="text-[10px] text-green-400 block mt-1 font-bold bg-green-950/40 py-0.5 rounded">▲ +0.4%</span>
             </div>
-            <div class="bg-gray-900/90 border border-gray-800/80 p-3.5 rounded-2xl text-center shadow-lg">
-                <span class="text-[11px] text-gray-400 block mb-1">₿ ביטקוין</span>
+            <div class="bg-gradient-to-br from-gray-900 to-gray-900/60 border border-gray-800/80 p-4 rounded-2xl text-center shadow-xl hover:border-gray-700 transition">
+                <span class="text-[11px] text-gray-400 block mb-1 font-medium">₿ ביטקוין</span>
                 <span id="val-btc" class="text-sm sm:text-base font-black text-yellow-400">$68,450</span>
-                <span class="text-[10px] text-green-400 block mt-0.5 font-bold">▲ +1.2%</span>
+                <span class="text-[10px] text-green-400 block mt-1 font-bold bg-green-950/40 py-0.5 rounded">▲ +1.2%</span>
             </div>
-            <div class="bg-gray-900/90 border border-gray-800/80 p-3.5 rounded-2xl text-center shadow-lg">
-                <span class="text-[11px] text-gray-400 block mb-1">📈 S&P 500</span>
+            <div class="bg-gradient-to-br from-gray-900 to-gray-900/60 border border-gray-800/80 p-4 rounded-2xl text-center shadow-xl hover:border-gray-700 transition">
+                <span class="text-[11px] text-gray-400 block mb-1 font-medium">📈 S&P 500</span>
                 <span id="val-sp" class="text-sm sm:text-base font-black text-cyan-400">5,620</span>
-                <span class="text-[10px] text-red-400 block mt-0.5 font-bold">▼ -0.3%</span>
+                <span class="text-[10px] text-red-400 block mt-1 font-bold bg-red-950/40 py-0.5 rounded">▼ -0.3%</span>
             </div>
         </section>
 
-        <section class="bg-gray-900 border border-gray-800/80 p-4 sm:p-5 rounded-2xl shadow-xl space-y-3">
+        <!-- Chart Section -->
+        <section class="bg-gray-900/90 border border-gray-800/80 p-4 sm:p-5 rounded-3xl shadow-2xl space-y-3">
             <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
                 <div class="flex gap-2 text-xs">
-                    <button onclick="switchAsset('btc')" id="asset-btc" class="px-3 py-1.5 bg-cyan-600 rounded-xl font-bold text-white transition shadow">ביטקוין</button>
-                    <button onclick="switchAsset('usd')" id="asset-usd" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 rounded-xl font-bold text-gray-300 transition">דולר/שקל</button>
-                    <button onclick="switchAsset('sp')" id="asset-sp" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 rounded-xl font-bold text-gray-300 transition">S&P 500</button>
+                    <button onclick="switchAsset('btc')" id="asset-btc" class="px-3.5 py-1.5 bg-cyan-600 rounded-xl font-bold text-white transition shadow-md">ביטקוין</button>
+                    <button onclick="switchAsset('usd')" id="asset-usd" class="px-3.5 py-1.5 bg-gray-800 hover:bg-gray-700 rounded-xl font-bold text-gray-300 transition">דולר/שקל</button>
+                    <button onclick="switchAsset('sp')" id="asset-sp" class="px-3.5 py-1.5 bg-gray-800 hover:bg-gray-700 rounded-xl font-bold text-gray-300 transition">S&P 500</button>
                 </div>
             </div>
             <div class="h-52 w-full">
@@ -130,7 +135,8 @@ def main():
             </div>
         </section>
 
-        <div class="flex border-b border-gray-800 gap-6 overflow-x-auto text-sm pb-2 pt-2">
+        <!-- Tabs -->
+        <div class="flex border-b border-gray-800 gap-6 overflow-x-auto text-sm pb-2 pt-2 scrollbar-none">
             <button onclick="switchTab('global')" id="btn-global" class="pb-2 border-b-2 border-cyan-500 font-bold text-cyan-400 whitespace-nowrap focus:outline-none transition">🌐 עולמי</button>
             <button onclick="switchTab('israel')" id="btn-israel" class="pb-2 border-b-2 border-transparent text-gray-400 hover:text-gray-200 whitespace-nowrap focus:outline-none transition">🇮🇱 ישראל</button>
             <button onclick="switchTab('madrid')" id="btn-madrid" class="pb-2 border-b-2 border-transparent text-gray-400 hover:text-gray-200 whitespace-nowrap focus:outline-none transition">⚽ ריאל מדריד</button>
@@ -139,17 +145,17 @@ def main():
 
         <!-- TAB GLOBAL -->
         <div id="tab-global" class="space-y-4">
-            <h3 class="text-base sm:text-lg font-bold mb-4">🔥 הכתבות המובילות בעולם</h3>
+            <h3 class="text-base sm:text-lg font-bold mb-4 text-gray-200">🔥 הכתבות המובילות בעולם</h3>
 """
 
     for item in global_news:
         html_content += f"""
-            <article class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-lg">
-                <div class="p-4 sm:p-5 space-y-2">
-                    <span class="bg-red-950 text-red-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">חי מהרשת</span>
-                    <h4 class="text-base font-bold">{item['title']}</h4>
+            <article class="bg-gray-900/90 border border-gray-800/80 rounded-2xl overflow-hidden shadow-xl hover:border-gray-700 transition duration-300">
+                <div class="p-4 sm:p-5 space-y-2.5">
+                    <span class="bg-red-950/80 text-red-400 border border-red-900/50 text-[10px] px-3 py-1 rounded-full font-bold inline-block">חי מהרשת</span>
+                    <h4 class="text-base font-bold text-gray-100">{item['title']}</h4>
                     <p class="text-gray-400 text-xs leading-relaxed">{item['desc']}</p>
-                    <a href="{item['link']}" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
+                    <a href="{item['link']}" target="_blank" class="inline-block pt-2 text-cyan-400 hover:text-cyan-300 hover:underline text-xs font-bold transition">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
         """
@@ -159,17 +165,17 @@ def main():
 
         <!-- TAB ISRAEL -->
         <div id="tab-israel" class="space-y-4 hidden">
-            <h3 class="text-base sm:text-lg font-bold mb-4">🇮🇱 עדכונים חיים בישראל</h3>
+            <h3 class="text-base sm:text-lg font-bold mb-4 text-gray-200">🇮🇱 עדכונים חיים בישראל</h3>
 """
 
     for item in israel_news:
         html_content += f"""
-            <article class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-lg">
-                <div class="p-4 sm:p-5 space-y-2">
-                    <span class="bg-blue-950 text-blue-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">ישראל</span>
-                    <h4 class="text-base font-bold">{item['title']}</h4>
+            <article class="bg-gray-900/90 border border-gray-800/80 rounded-2xl overflow-hidden shadow-xl hover:border-gray-700 transition duration-300">
+                <div class="p-4 sm:p-5 space-y-2.5">
+                    <span class="bg-blue-950/80 text-blue-400 border border-blue-900/50 text-[10px] px-3 py-1 rounded-full font-bold inline-block">ישראל</span>
+                    <h4 class="text-base font-bold text-gray-100">{item['title']}</h4>
                     <p class="text-gray-400 text-xs leading-relaxed">{item['desc']}</p>
-                    <a href="{item['link']}" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
+                    <a href="{item['link']}" target="_blank" class="inline-block pt-2 text-cyan-400 hover:text-cyan-300 hover:underline text-xs font-bold transition">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
         """
@@ -179,30 +185,30 @@ def main():
 
         <!-- TAB MADRID -->
         <div id="tab-madrid" class="space-y-4 hidden">
-            <h3 class="text-base sm:text-lg font-bold mb-4">⚽ ריאל מדריד</h3>
-            <article class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-lg">
-                <div class="p-4 sm:p-5 space-y-2">
-                    <span class="bg-purple-950 text-purple-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">ריאל מדריד</span>
-                    <h4 class="text-base font-bold">ההכנות לקראת משחק העונה בסגל מלא</h4>
-                    <p class="text-gray-400 text-xs leading-relaxed">צוות האימון מתמקד בשיפור משחק הלחץ ובשילוב הכוכבים הצעירים בהרכב.</p>
-                    <a href="https://www.realmadrid.com" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
+            <h3 class="text-base sm:text-lg font-bold mb-4 text-gray-200">⚽ ריאל מדריד</h3>
+            <article class="bg-gray-900/90 border border-gray-800/80 rounded-2xl overflow-hidden shadow-xl hover:border-gray-700 transition duration-300">
+                <div class="p-4 sm:p-5 space-y-2.5">
+                    <span class="bg-purple-950/80 text-purple-400 border border-purple-900/50 text-[10px] px-3 py-1 rounded-full font-bold inline-block">ריאל מדריד</span>
+                    <h4 class="text-base font-bold text-gray-100">ההכנות לקראת משחק העונה בסגל מלא</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">צוות האימון מתמקד בשיפור משחק הלחץ ובשילוב הכוכבים הצעירים בהרכב לקראת האתגר הבא.</p>
+                    <a href="https://www.realmadrid.com" target="_blank" class="inline-block pt-2 text-cyan-400 hover:text-cyan-300 hover:underline text-xs font-bold transition">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
         </div>
 
         <!-- TAB CARS -->
         <div id="tab-cars" class="space-y-4 hidden">
-            <h3 class="text-base sm:text-lg font-bold mb-4">🚗 חדשות רכב</h3>
+            <h3 class="text-base sm:text-lg font-bold mb-4 text-gray-200">🚗 חדשות רכב</h3>
 """
 
     for item in cars_news:
         html_content += f"""
-            <article class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-lg">
-                <div class="p-4 sm:p-5 space-y-2">
-                    <span class="bg-green-950 text-green-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">רכב</span>
-                    <h4 class="text-base font-bold">{item['title']}</h4>
+            <article class="bg-gray-900/90 border border-gray-800/80 rounded-2xl overflow-hidden shadow-xl hover:border-gray-700 transition duration-300">
+                <div class="p-4 sm:p-5 space-y-2.5">
+                    <span class="bg-green-950/80 text-green-400 border border-green-900/50 text-[10px] px-3 py-1 rounded-full font-bold inline-block">רכב</span>
+                    <h4 class="text-base font-bold text-gray-100">{item['title']}</h4>
                     <p class="text-gray-400 text-xs leading-relaxed">{item['desc']}</p>
-                    <a href="{item['link']}" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
+                    <a href="{item['link']}" target="_blank" class="inline-block pt-2 text-cyan-400 hover:text-cyan-300 hover:underline text-xs font-bold transition">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
         """
@@ -212,7 +218,7 @@ def main():
 
     </main>
 
-    <footer class="border-t border-gray-800 mt-12 py-6 text-center text-xs text-gray-500 px-4">
+    <footer class="border-t border-gray-800/80 mt-12 py-6 text-center text-xs text-gray-500 px-4">
         AI Singularity & Polymarket Hub © 2026 • מעודכן אוטומטית בכל שעה עגולה
     </footer>
 
@@ -241,9 +247,10 @@ def main():
                     label: currentAssetData.btc.label,
                     data: currentAssetData.btc.data,
                     borderColor: currentAssetData.btc.color,
-                    backgroundColor: 'rgba(250, 204, 21, 0.1)',
+                    backgroundColor: 'rgba(250, 204, 21, 0.08)',
                     fill: true,
-                    tension: 0.3
+                    tension: 0.35,
+                    borderWidth: 3
                 }}]
             }},
             options: {{
@@ -251,8 +258,8 @@ def main():
                 maintainAspectRatio: false,
                 plugins: {{ legend: {{ display: false }} }},
                 scales: {{
-                    x: {{ ticks: {{ color: '#9ca3af', font: {{ size: 10 }} }}, grid: {{ color: '#1f2937' }} }},
-                    y: {{ ticks: {{ color: '#9ca3af', font: {{ size: 10 }} }}, grid: {{ color: '#1f2937' }} }}
+                    x: {{ ticks: {{ color: '#9ca3af', font: {{ size: 10 }} }}, grid: {{ color: 'rgba(31, 41, 55, 0.4)' }} }},
+                    y: {{ ticks: {{ color: '#9ca3af', font: {{ size: 10 }} }}, grid: {{ color: 'rgba(31, 41, 55, 0.4)' }} }}
                 }}
             }}
         }});
@@ -261,9 +268,9 @@ def main():
             ['btc', 'usd', 'sp'].forEach(k => {{
                 let btn = document.getElementById('asset-' + k);
                 if(k === assetKey) {{
-                    btn.className = "px-3 py-1.5 bg-cyan-600 rounded-xl font-bold text-white transition shadow";
+                    btn.className = "px-3.5 py-1.5 bg-cyan-600 rounded-xl font-bold text-white transition shadow-md";
                 }} else {{
-                    btn.className = "px-3 py-1.5 bg-gray-800 hover:bg-gray-700 rounded-xl font-bold text-gray-300 transition";
+                    btn.className = "px-3.5 py-1.5 bg-gray-800 hover:bg-gray-700 rounded-xl font-bold text-gray-300 transition";
                 }}
             }});
             let asset = currentAssetData[assetKey];
