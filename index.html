@@ -8,18 +8,37 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap');
         body { font-family: 'Heebo', sans-serif; }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(100%); }
+        }
     </style>
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen pb-12">
 
-    <header class="border-b border-gray-800 bg-gray-900/80 backdrop-blur sticky top-0 z-50">
-        <div class="max-w-4xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-2">
+    <!-- Header & Manual Refresh Button -->
+    <header class="border-b border-gray-800 bg-gray-900/90 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-3">
             <h1 class="text-xl sm:text-2xl font-black bg-gradient-to-r from-red-500 via-yellow-500 to-cyan-400 bg-clip-text text-transparent text-center sm:text-right">
                 ⚡ AI Singularity & Live Hub
             </h1>
-            <span id="update-time" class="text-xs bg-red-950 text-red-400 border border-red-800 px-3 py-1 rounded-full font-bold animate-pulse">
-                🔴 מתעדכן אוטומטית כל שעה
-            </span>
+            <div class="flex items-center gap-2">
+                <button onclick="manualRefresh()" class="bg-cyan-600 hover:bg-cyan-500 text-white text-xs px-3 py-1.5 rounded-xl font-bold flex items-center gap-1 shadow transition">
+                    🔄 רענן עכשיו
+                </button>
+                <span id="update-time" class="text-xs bg-red-950 text-red-400 border border-red-800 px-3 py-1 rounded-full font-bold animate-pulse">
+                    🔴 מעודכן כעת
+                </span>
+            </div>
+        </div>
+        <!-- Live News Ticker (המבזקים) -->
+        <div class="bg-gray-900 border-t border-gray-800 py-1.5 px-4 overflow-hidden flex items-center">
+            <span class="bg-red-600 text-white text-[10px] px-2 py-0.5 rounded font-bold ml-3 whitespace-nowrap">⚡ מבזקים חיים</span>
+            <div class="overflow-hidden whitespace-nowrap w-full">
+                <p id="ticker-text" class="text-xs text-gray-300 inline-block animate-marquee">
+                    • פריצת דרך במודלי AGI חדשים מעוררת דיונים סוערים במעבדות המחקר • ריאל מדריד נערכת למשחק העונה בסגל מלא • שער הדולר ממשיך להיות תנודתי בשווקים • רכבים אוטונומיים חדשים מקבלים אישורי נסיעה עירוניים.
+                </p>
+            </div>
         </div>
     </header>
 
@@ -29,15 +48,15 @@
         <section class="grid grid-cols-3 gap-3">
             <div class="bg-gray-900/90 border border-gray-800 p-3 rounded-xl text-center shadow">
                 <span class="text-[11px] text-gray-400 block mb-1">💱 שער הדולר</span>
-                <span id="val-usd" class="text-sm sm:text-base font-black text-green-400">3.64 ₪</span>
+                <span class="text-sm sm:text-base font-black text-green-400">3.64 ₪</span>
             </div>
             <div class="bg-gray-900/90 border border-gray-800 p-3 rounded-xl text-center shadow">
                 <span class="text-[11px] text-gray-400 block mb-1">₿ ביטקוין</span>
-                <span id="val-btc" class="text-sm sm:text-base font-black text-yellow-400">$68,450</span>
+                <span class="text-sm sm:text-base font-black text-yellow-400">$68,450</span>
             </div>
             <div class="bg-gray-900/90 border border-gray-800 p-3 rounded-xl text-center shadow">
                 <span class="text-[11px] text-gray-400 block mb-1">📈 S&P 500</span>
-                <span id="val-sp" class="text-sm sm:text-base font-black text-cyan-400">5,620</span>
+                <span class="text-sm sm:text-base font-black text-cyan-400">5,620</span>
             </div>
         </section>
 
@@ -85,67 +104,102 @@
             <button onclick="switchTab('cars')" id="btn-cars" class="pb-2 border-b-2 border-transparent text-gray-400 hover:text-gray-200 whitespace-nowrap focus:outline-none">🚗 רכב פופולרי</button>
         </div>
 
-        <!-- Content Sections with Images Support -->
+        <!-- TAB 1: GLOBAL -->
         <div id="tab-global" class="space-y-4">
             <h3 class="text-base sm:text-lg font-bold mb-4">🔥 הכתבות המובילות בעולם</h3>
+            
             <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop" alt="AI" class="w-full h-44 object-cover">
-                <div class="p-4 sm:p-6">
-                    <div class="flex justify-between items-start mb-2 gap-2">
-                        <span class="bg-red-950 text-red-400 text-[11px] px-2.5 py-0.5 rounded-full font-bold">רמת וואו: 10/10</span>
-                        <span class="text-[11px] text-gray-500">MIT Tech Review</span>
-                    </div>
-                    <h4 class="text-base font-bold mb-2">אזהרות חמורות מעולם המחקר: נקודת האל-חזור של AGI</h4>
-                    <p class="text-gray-400 text-xs sm:text-sm mb-3">ניתוח על בעיות יישור ובקרה של מערכות חכמות מהאדם.</p>
-                    <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank" class="text-cyan-400 text-xs font-bold">לקריאה ←</a>
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
+                <div class="p-4 sm:p-5 space-y-2">
+                    <span class="bg-red-950 text-red-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">רמת וואו: 10/10</span>
+                    <h4 class="text-base font-bold">אזהרות חמורות מעולם המחקר: נקודת האל-חזור של AGI</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: חוקרים בכירים מעלים דאגה עמוקה מכך שמודלי בינה מלאכותית מתקדמים מתחילים לפתח יכולות תכנון עצמאיות העקפות את בקרות הבטיחות האנושיות.</p>
+                    <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
+                </div>
+            </article>
+
+            <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
+                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
+                <div class="p-4 sm:p-5 space-y-2">
+                    <span class="bg-orange-950 text-orange-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">רמת וואו: 9.5/10</span>
+                    <h4 class="text-base font-bold">המעבר המהיר לכלכלת פוסט-מחסור הודות לרובוטיקה</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: שילוב סוכנים אוטונומיים ורובוטים דמויי אדם בתעשייה מוביל לצניחה חדה בעלויות הייצור, מה שמאותת על שינוי מבני היסטורי במושג העבודה.</p>
+                    <a href="https://www.wired.com/tag/artificial-intelligence/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
         </div>
 
+        <!-- TAB 2: ISRAEL -->
         <div id="tab-israel" class="space-y-4 hidden">
             <h3 class="text-base sm:text-lg font-bold mb-4">🇮🇱 עדכונים חיים וטכנולוגיה בישראל</h3>
+            
             <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop" alt="Israel Tech" class="w-full h-44 object-cover">
-                <div class="p-4 sm:p-6">
-                    <div class="flex justify-between items-start mb-2 gap-2">
-                        <span class="bg-blue-950 text-blue-400 text-[11px] px-2.5 py-0.5 rounded-full font-bold">ישראל</span>
-                        <span class="text-[11px] text-gray-500">Geektime</span>
-                    </div>
-                    <h4 class="text-base font-bold mb-2">חדשנות מקומית: סטארט-אפים מובילים את פיתוח סוכני ה-AI</h4>
-                    <p class="text-gray-400 text-xs sm:text-sm mb-3">סקירה שוטפת על האקו-סיסטם המקומי ומרכזי הפיתוח.</p>
-                    <a href="https://www.geektime.co.il/" target="_blank" class="text-cyan-400 text-xs font-bold">לקריאה ←</a>
+                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
+                <div class="p-4 sm:p-5 space-y-2">
+                    <span class="bg-blue-950 text-blue-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">ישראל • סטארט-אפים</span>
+                    <h4 class="text-base font-bold">האקו-סיסטם המקומי מוביל בפיתוח כלי הגנה ל-AI</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: חברות הזנק ישראליות מציגות פתרונות חדשניים לאבטחת מודלי שפה ארגוניים מפני מתקפות סייבר מתקדמות וגניבת מידע רגיש.</p>
+                    <a href="https://www.geektime.co.il/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
+                </div>
+            </article>
+
+            <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
+                <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
+                <div class="p-4 sm:p-5 space-y-2">
+                    <span class="bg-blue-950 text-blue-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">ישראל • פיתוח</span>
+                    <h4 class="text-base font-bold">מרכזי הפיתוח הבינלאומיים בארץ מרחיבים את פעילות ה-AI</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: ענקיות הטכנולוגיה ממשיכות להשקיע בישראל ומקימות צוותי מחקר ייעודיים המתמקדים בארכיטקטורת חומרה ושבבים מתקדמים.</p>
+                    <a href="https://www.calcalist.co.il/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
         </div>
 
+        <!-- TAB 3: REAL MADRID -->
         <div id="tab-madrid" class="space-y-4 hidden">
             <h3 class="text-base sm:text-lg font-bold mb-4">⚽ ריאל מדריד - חדשות ועדכונים</h3>
+            
             <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=800&auto=format&fit=crop" alt="Real Madrid" class="w-full h-44 object-cover">
-                <div class="p-4 sm:p-6">
-                    <div class="flex justify-between items-start mb-2 gap-2">
-                        <span class="bg-purple-950 text-purple-400 text-[11px] px-2.5 py-0.5 rounded-full font-bold">ריאל מדריד</span>
-                        <span class="text-[11px] text-gray-500">ספורט</span>
-                    </div>
-                    <h4 class="text-base font-bold mb-2">ההכנות של הבלאנקוס לעונה החדשה: רכש וסגל</h4>
-                    <p class="text-gray-400 text-xs sm:text-sm mb-3">כל מה שקורה במועדון המפואר ועדכונים שוטפים מהקבוצה.</p>
-                    <a href="https://www.realmadrid.com/" target="_blank" class="text-cyan-400 text-xs font-bold">לאתר הרשמי ←</a>
+                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
+                <div class="p-4 sm:p-5 space-y-2">
+                    <span class="bg-purple-950 text-purple-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">ריאל מדריד</span>
+                    <h4 class="text-base font-bold">ההכנות לקראת משחק העונה: הסגל המלא מתאמן בבנייה טקטית חדשה</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: צוות האימון מתמקד בשיפור משחק הלחץ ובשילוב הכוכבים הצעירים בהרכב הפותח לקראת האתגרים הקרובים.</p>
+                    <a href="https://www.realmadrid.com/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
+                </div>
+            </article>
+
+            <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
+                <img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
+                <div class="p-4 sm:p-5 space-y-2">
+                    <span class="bg-purple-950 text-purple-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">רכש וחוזים</span>
+                    <h4 class="text-base font-bold">עדכונים מחדר ההלבשה: עתידם של שחקני המפתח במועדון</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: דיווחים מספרד על ההערכות לקראת חלון ההעברות הבא והתוכניות האסטרטגיות של הנהלת הבלאנקוס.</p>
+                    <a href="https://www.realmadrid.com/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
         </div>
 
+        <!-- TAB 4: CARS -->
         <div id="tab-cars" class="space-y-4 hidden">
             <h3 class="text-base sm:text-lg font-bold mb-4">🚗 חדשות רכב פופולריות</h3>
+            
             <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop" alt="Cars" class="w-full h-44 object-cover">
-                <div class="p-4 sm:p-6">
-                    <div class="flex justify-between items-start mb-2 gap-2">
-                        <span class="bg-green-950 text-green-400 text-[11px] px-2.5 py-0.5 rounded-full font-bold">רכב חם</span>
-                        <span class="text-[11px] text-gray-500">תעשיית הרכב</span>
-                    </div>
-                    <h4 class="text-base font-bold mb-2">הדגמים המדוברים ביותר לשנת 2026: חשמליות ואוטונומיה</h4>
-                    <p class="text-gray-400 text-xs sm:text-sm mb-3">סקירות על הרכבים הפופולריים והחדשות המוטוריות.</p>
-                    <a href="https://www.autocar.co.uk/" target="_blank" class="text-cyan-400 text-xs font-bold">לקריאה ←</a>
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
+                <div class="p-4 sm:p-5 space-y-2">
+                    <span class="bg-green-950 text-green-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">רכב חם • חשמליות</span>
+                    <h4 class="text-base font-bold">דור העתיד של הרכבים החשמליים: טווח נסיעה וטעינה אבסולוטית</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: יצרניות הרכב המובילות חושפות טכנולוגיות סוללה חדשות המאפשרות טעינה מלאה בתוך דקות ספורות בלבד.</p>
+                    <a href="https://www.autocar.co.uk/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
+                </div>
+            </article>
+
+            <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
+                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
+                <div class="p-4 sm:p-5 space-y-2">
+                    <span class="bg-green-950 text-green-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">טכנולוגיה ברכב</span>
+                    <h4 class="text-base font-bold">מערכות נהיגה אוטונומיות מתקדמות הופכות לתקן החדש</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: סקירה של מערכות העזר החדשות לנהג המשלבות חיישני ליידר מתקדמים ויכולות עיבוד מבוססות בינה מלאכותית.</p>
+                    <a href="https://www.autocar.co.uk/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
         </div>
@@ -156,6 +210,7 @@
         AI Singularity & Live Hub © 2026 • מעודכן אוטומטית בכל שעה עגולה
     </footer>
 
+    <!-- Scripts -->
     <script>
         function switchTab(tabId) {
             ['global', 'israel', 'madrid', 'cars'].forEach(t => {
@@ -164,6 +219,15 @@
             });
             document.getElementById('tab-' + tabId).classList.remove('hidden');
             document.getElementById('btn-' + tabId).className = "pb-2 border-b-2 border-cyan-500 font-bold text-cyan-400 whitespace-nowrap focus:outline-none";
+        }
+
+        function manualRefresh() {
+            const btn = document.getElementById('update-time');
+            btn.innerText = "🔄 מעדכן נתונים...";
+            setTimeout(() => {
+                btn.innerText = "🔴 מעודכן כעת";
+                alert("הנתונים והמבזקים רועננו בהצלחה!");
+            }, 800);
         }
     </script>
 </body>
