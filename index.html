@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Singularity & Post-Scarcity Watch</title>
+    <title>AI Singularity & Live Hub</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -17,7 +17,7 @@
     <header class="border-b border-gray-800 bg-gray-900/80 backdrop-blur sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-2">
             <h1 class="text-xl sm:text-2xl font-black bg-gradient-to-r from-red-500 via-yellow-500 to-cyan-400 bg-clip-text text-transparent text-center sm:text-right">
-                ⚡ AI Singularity Watch
+                ⚡ AI Singularity & Live Hub
             </h1>
             <span class="text-xs bg-red-950 text-red-400 border border-red-800 px-3 py-1 rounded-full font-bold animate-pulse">
                 🔴 עדכון חי • 27 ביולי 2026
@@ -26,6 +26,22 @@
     </header>
 
     <main class="max-w-4xl mx-auto px-4 py-6 space-y-6">
+
+        <!-- Financial Ticker (USD, BTC, S&P 500) -->
+        <section class="grid grid-cols-3 gap-3">
+            <div class="bg-gray-900/90 border border-gray-800 p-3 rounded-xl text-center shadow">
+                <span class="text-[11px] text-gray-400 block mb-1">💱 שער הדולר</span>
+                <span class="text-sm sm:text-base font-black text-green-400">3.64 ₪</span>
+            </div>
+            <div class="bg-gray-900/90 border border-gray-800 p-3 rounded-xl text-center shadow">
+                <span class="text-[11px] text-gray-400 block mb-1">₿ ביטקוין</span>
+                <span class="text-sm sm:text-base font-black text-yellow-400">$68,450</span>
+            </div>
+            <div class="bg-gray-900/90 border border-gray-800 p-3 rounded-xl text-center shadow">
+                <span class="text-[11px] text-gray-400 block mb-1">📈 S&P 500</span>
+                <span class="text-sm sm:text-base font-black text-cyan-400">5,620</span>
+            </div>
+        </section>
 
         <!-- Metrics Dashboard -->
         <section class="grid grid-cols-1 gap-4">
@@ -66,49 +82,89 @@
             </div>
         </section>
 
-        <!-- Navigation Tabs (Mobile Optimized) -->
-        <div class="flex border-b border-gray-800 gap-4 overflow-x-auto text-sm">
-            <button class="pb-3 border-b-2 border-cyan-500 font-bold text-cyan-400 whitespace-nowrap focus:outline-none">🌐 חדשות עולמיות</button>
-            <button class="pb-3 border-b-2 border-transparent text-gray-400 hover:text-gray-200 whitespace-nowrap focus:outline-none">🇮🇱 חדשות AI בישראל</button>
+        <!-- Navigation Tabs (Scrollable Mobile) -->
+        <div class="flex border-b border-gray-800 gap-4 overflow-x-auto text-sm pb-1">
+            <button onclick="switchTab('global')" id="btn-global" class="pb-2 border-b-2 border-cyan-500 font-bold text-cyan-400 whitespace-nowrap focus:outline-none">🌐 עולמי (פוסט-מחסור וסיכונים)</button>
+            <button onclick="switchTab('israel')" id="btn-israel" class="pb-2 border-b-2 border-transparent text-gray-400 hover:text-gray-200 whitespace-nowrap focus:outline-none">🇮🇱 חדשות ישראל</button>
+            <button onclick="switchTab('madrid')" id="btn-madrid" class="pb-2 border-b-2 border-transparent text-gray-400 hover:text-gray-200 whitespace-nowrap focus:outline-none">⚽ ריאל מדריד</button>
+            <button onclick="switchTab('cars')" id="btn-cars" class="pb-2 border-b-2 border-transparent text-gray-400 hover:text-gray-200 whitespace-nowrap focus:outline-none">🚗 רכב פופולרי</button>
         </div>
 
-        <!-- Global News Section -->
-        <section class="space-y-4">
-            <h3 class="text-base sm:text-lg font-bold mb-4 flex items-center gap-2">🔥 הכתבות המובילות (לפי רמת וואו)</h3>
-
-            <!-- News Item Example 1 -->
+        <!-- Sections Content -->
+        
+        <!-- Tab 1: Global -->
+        <div id="tab-global" class="space-y-4">
+            <h3 class="text-base sm:text-lg font-bold mb-4">🔥 הכתבות המובילות בעולם</h3>
             <article class="bg-gray-900 border border-gray-800 p-4 sm:p-6 rounded-2xl">
                 <div class="flex justify-between items-start mb-2 gap-2">
                     <span class="bg-red-950 text-red-400 text-[11px] px-2.5 py-0.5 rounded-full font-bold">רמת וואו: 10/10</span>
                     <span class="text-[11px] text-gray-500">MIT Tech Review</span>
                 </div>
-                <h4 class="text-base font-bold mb-2">אזהרות חמורות מעולם המחקר: האם אנחנו מתקרבים לנקודת האל-חזור של AGI?</h4>
-                <p class="text-gray-400 text-xs sm:text-sm mb-3">ניתוח מעמיק על המחקרים האחרונים בתחום ה-Alignment, המתריעים מפני חוסר יכולת שליטה על מודלים שיעקפו את האדם.</p>
-                <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank" class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300 text-xs font-bold">
-                    לקריאת הכתבה המלאה ←
-                </a>
+                <h4 class="text-base font-bold mb-2">אזהרות חמורות מעולם המחקר: נקודת האל-חזור של AGI</h4>
+                <p class="text-gray-400 text-xs sm:text-sm mb-3">ניתוח על בעיות יישור ובקרה של מערכות חכמות מהאדם.</p>
+                <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank" class="text-cyan-400 text-xs font-bold">לקריאה ←</a>
             </article>
+        </div>
 
-            <!-- News Item Example 2 -->
+        <!-- Tab 2: Israel -->
+        <div id="tab-israel" class="space-y-4 hidden">
+            <h3 class="text-base sm:text-lg font-bold mb-4">🇮🇱 עדכונים חיים וטכנולוגיה בישראל</h3>
             <article class="bg-gray-900 border border-gray-800 p-4 sm:p-6 rounded-2xl">
                 <div class="flex justify-between items-start mb-2 gap-2">
-                    <span class="bg-orange-950 text-orange-400 text-[11px] px-2.5 py-0.5 rounded-full font-bold">רמת וואו: 9.5/10</span>
-                    <span class="text-[11px] text-gray-500">WIRED</span>
+                    <span class="bg-blue-950 text-blue-400 text-[11px] px-2.5 py-0.5 rounded-full font-bold">ישראל</span>
+                    <span class="text-[11px] text-gray-500">Geektime / מקומי</span>
                 </div>
-                <h4 class="text-base font-bold mb-2">השתלטות הרובוטים על שוק העבודה והדרך לעולם ללא מחסור</h4>
-                <p class="text-gray-400 text-xs sm:text-sm mb-3">כתבת עומק על פריצות הדרך ברובוטיקה וסוכנים אוטונומיים שמאיצות את ביטול הצורך בעבודה מסורתית.</p>
-                <a href="https://www.wired.com/tag/artificial-intelligence/" target="_blank" class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300 text-xs font-bold">
-                    לקריאת הכתבה המלאה ←
-                </a>
+                <h4 class="text-base font-bold mb-2">חדשנות מקומית: סטארט-אפים ישראליים מובילים את פיתוח סוכני ה-AI</h4>
+                <p class="text-gray-400 text-xs sm:text-sm mb-3">סקירה שוטפת על מרכזי הפיתוח של ענקיות הטכנולוגיה והאקו-סיסטם המקומי.</p>
+                <a href="https://www.geektime.co.il/" target="_blank" class="text-cyan-400 text-xs font-bold">לקריאה ←</a>
             </article>
-        </section>
+        </div>
+
+        <!-- Tab 3: Real Madrid -->
+        <div id="tab-madrid" class="space-y-4 hidden">
+            <h3 class="text-base sm:text-lg font-bold mb-4">⚽ ריאל מדריד - חדשות ועדכונים</h3>
+            <article class="bg-gray-900 border border-gray-800 p-4 sm:p-6 rounded-2xl">
+                <div class="flex justify-between items-start mb-2 gap-2">
+                    <span class="bg-purple-950 text-purple-400 text-[11px] px-2.5 py-0.5 rounded-full font-bold">ריאל מדריד</span>
+                    <span class="text-[11px] text-gray-500">ספורט</span>
+                </div>
+                <h4 class="text-base font-bold mb-2">ההכנות של הבלאנקוס לעונה החדשה: רכש, סגל ומשחקי הכנה</h4>
+                <p class="text-gray-400 text-xs sm:text-sm mb-3">כל מה שקורה במועדון המפואר, חדשות חדר הלבשה ועדכונים שוטפים.</p>
+                <a href="https://www.realmadrid.com/" target="_blank" class="text-cyan-400 text-xs font-bold">לאתר הרשמי ←</a>
+            </article>
+        </div>
+
+        <!-- Tab 4: Cars -->
+        <div id="tab-cars" class="space-y-4 hidden">
+            <h3 class="text-base sm:text-lg font-bold mb-4">🚗 חדשות רכב פופולריות</h3>
+            <article class="bg-gray-900 border border-gray-800 p-4 sm:p-6 rounded-2xl">
+                <div class="flex justify-between items-start mb-2 gap-2">
+                    <span class="bg-green-950 text-green-400 text-[11px] px-2.5 py-0.5 rounded-full font-bold">רכב חם</span>
+                    <span class="text-[11px] text-gray-500">תעשיית הרכב</span>
+                </div>
+                <h4 class="text-base font-bold mb-2">הדגמים המדוברים ביותר לשנת 2026: חשמליות, טכנולוגיה ואוטונומיה</h4>
+                <p class="text-gray-400 text-xs sm:text-sm mb-3">סקירות על הרכבים הפופולריים והחדשות הבולטות בעולם המוטורי.</p>
+                <a href="https://www.autocar.co.uk/" target="_blank" class="text-cyan-400 text-xs font-bold">לקריאה ←</a>
+            </article>
+        </div>
 
     </main>
 
     <!-- Footer -->
     <footer class="border-t border-gray-800 mt-12 py-6 text-center text-xs text-gray-500 px-4">
-        AI Singularity Watch © 2026 • מנוהל באמצעות אוטומציה מבוססת AI
+        AI Singularity & Live Hub © 2026 • מנוהל באמצעות אוטומציה
     </footer>
 
+    <!-- Tab Script -->
+    <script>
+        function switchTab(tabId) {
+            ['global', 'israel', 'madrid', 'cars'].forEach(t => {
+                document.getElementById('tab-' + t).classList.add('hidden');
+                document.getElementById('btn-' + t).className = "pb-2 border-b-2 border-transparent text-gray-400 hover:text-gray-200 whitespace-nowrap focus:outline-none";
+            });
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId). className = "pb-2 border-b-2 border-cyan-500 font-bold text-cyan-400 whitespace-nowrap focus:outline-none";
+        }
+    </script>
 </body>
 </html>
