@@ -15,7 +15,7 @@
         }
         .animate-marquee {
             display: inline-block;
-            animation: marquee 25s linear infinite;
+            animation: marquee 30s linear infinite;
         }
     </style>
 </head>
@@ -36,9 +36,9 @@
                 </span>
             </div>
         </div>
-        <!-- Live News Ticker (רץ מצד לצד עם שעות) -->
+        <!-- Live News Ticker -->
         <div class="bg-gray-900 border-t border-gray-800 py-2 px-4 overflow-hidden flex items-center whitespace-nowrap">
-            <span class="bg-red-600 text-white text-[10px] px-2 py-0.5 rounded font-bold ml-3 z-10">⚡ מבזקים</span>
+            <span class="bg-red-600 text-white text-[10px] px-2 py-0.5 rounded font-bold ml-3 z-10 shadow">⚡ מבזקים</span>
             <div class="overflow-hidden w-full relative">
                 <div class="animate-marquee text-xs text-gray-300">
                     <span class="ml-8">[21:00] פריצת דרך במודלי AGI חדשים מעוררת דיונים סוערים במעבדות המחקר.</span>
@@ -57,17 +57,17 @@
             <div class="bg-gray-900/90 border border-gray-800 p-3 rounded-xl text-center shadow">
                 <span class="text-[11px] text-gray-400 block mb-1">💱 שער הדולר</span>
                 <span id="val-usd" class="text-sm sm:text-base font-black text-green-400">3.64 ₪</span>
-                <span id="change-usd" class="text-[10px] text-green-400 block mt-0.5 font-bold">▲ +0.4%</span>
+                <span class="text-[10px] text-green-400 block mt-0.5 font-bold">▲ +0.4%</span>
             </div>
             <div class="bg-gray-900/90 border border-gray-800 p-3 rounded-xl text-center shadow">
                 <span class="text-[11px] text-gray-400 block mb-1">₿ ביטקוין</span>
                 <span id="val-btc" class="text-sm sm:text-base font-black text-yellow-400">$68,450</span>
-                <span id="change-btc" class="text-[10px] text-green-400 block mt-0.5 font-bold">▲ +1.2%</span>
+                <span class="text-[10px] text-green-400 block mt-0.5 font-bold">▲ +1.2%</span>
             </div>
             <div class="bg-gray-900/90 border border-gray-800 p-3 rounded-xl text-center shadow">
                 <span class="text-[11px] text-gray-400 block mb-1">📈 S&P 500</span>
                 <span id="val-sp" class="text-sm sm:text-base font-black text-cyan-400">5,620</span>
-                <span id="change-sp" class="text-[10px] text-red-400 block mt-0.5 font-bold">▼ -0.3%</span>
+                <span class="text-[10px] text-red-400 block mt-0.5 font-bold">▼ -0.3%</span>
             </div>
         </section>
 
@@ -96,10 +96,10 @@
             <div class="bg-gray-900 border border-gray-800 p-4 rounded-2xl shadow-lg">
                 <div class="flex justify-between items-center mb-2">
                     <h2 class="font-bold text-cyan-400 text-sm sm:text-base flex items-center gap-2">🧠 AGI מגיע לפני 2030 (Polymarket)</h2>
-                    <span id="poly-agi" class="text-lg font-black">74%</span>
+                    <span class="text-lg font-black">74%</span>
                 </div>
                 <div class="w-full bg-gray-800 h-2.5 rounded-full overflow-hidden mb-1.5">
-                    <div id="bar-agi" class="bg-cyan-500 h-full rounded-full transition-all duration-500" style="width: 74%"></div>
+                    <div class="bg-cyan-500 h-full rounded-full" style="width: 74%"></div>
                 </div>
                 <p class="text-[11px] text-gray-400">הסתברות חזויה בחוזים הפתוחים ברשת</p>
             </div>
@@ -107,10 +107,10 @@
             <div class="bg-gray-900 border border-gray-800 p-4 rounded-2xl shadow-lg">
                 <div class="flex justify-between items-center mb-2">
                     <h2 class="font-bold text-red-500 text-sm sm:text-base flex items-center gap-2">🚨 עצירת פיתוח AI עולמית השנה</h2>
-                    <span id="poly-pause" class="text-lg font-black text-red-500">32%</span>
+                    <span class="text-lg font-black text-red-500">32%</span>
                 </div>
                 <div class="w-full bg-gray-800 h-2.5 rounded-full overflow-hidden mb-1.5">
-                    <div id="bar-pause" class="bg-red-600 h-full rounded-full transition-all duration-500" style="width: 32%"></div>
+                    <div class="bg-red-600 h-full rounded-full" style="width: 32%"></div>
                 </div>
                 <p class="text-[11px] text-gray-400">סיכוי לפי חוזי חיתום רגולטוריים</p>
             </div>
@@ -118,10 +118,10 @@
             <div class="bg-gray-900 border border-gray-800 p-4 rounded-2xl shadow-lg">
                 <div class="flex justify-between items-center mb-2">
                     <h2 class="font-bold text-yellow-500 text-sm sm:text-base flex items-center gap-2">🚀 השקת משימה מאוישת למאדים עד 2028</h2>
-                    <span id="poly-mars" class="text-lg font-black text-yellow-500">45%</span>
+                    <span class="text-lg font-black text-yellow-500">45%</span>
                 </div>
                 <div class="w-full bg-gray-800 h-2.5 rounded-full overflow-hidden mb-1.5">
-                    <div id="bar-mars" class="bg-yellow-500 h-full rounded-full transition-all duration-500" style="width: 45%"></div>
+                    <div class="bg-yellow-500 h-full rounded-full" style="width: 45%"></div>
                 </div>
                 <p class="text-[11px] text-gray-400">הערכת שוק ההימורים הטכנולוגי</p>
             </div>
@@ -138,7 +138,6 @@
         <!-- TAB 1: GLOBAL (3 Articles) -->
         <div id="tab-global" class="space-y-4">
             <h3 class="text-base sm:text-lg font-bold mb-4">🔥 הכתבות המובילות בעולם</h3>
-            
             <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
                 <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
                 <div class="p-4 sm:p-5 space-y-2">
@@ -148,7 +147,6 @@
                     <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
-
             <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
                 <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
                 <div class="p-4 sm:p-5 space-y-2">
@@ -158,7 +156,6 @@
                     <a href="https://www.wired.com/tag/artificial-intelligence/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
-
             <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
                 <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
                 <div class="p-4 sm:p-5 space-y-2">
@@ -173,7 +170,6 @@
         <!-- TAB 2: ISRAEL (3 Articles) -->
         <div id="tab-israel" class="space-y-4 hidden">
             <h3 class="text-base sm:text-lg font-bold mb-4">🇮🇱 עדכונים חיים וטכנולוגיה בישראל</h3>
-            
             <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
                 <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
                 <div class="p-4 sm:p-5 space-y-2">
@@ -183,7 +179,6 @@
                     <a href="https://www.geektime.co.il/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
-
             <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
                 <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
                 <div class="p-4 sm:p-5 space-y-2">
@@ -193,7 +188,6 @@
                     <a href="https://www.calcalist.co.il/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
-
             <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
                 <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
                 <div class="p-4 sm:p-5 space-y-2">
@@ -208,7 +202,6 @@
         <!-- TAB 3: REAL MADRID (3 Articles) -->
         <div id="tab-madrid" class="space-y-4 hidden">
             <h3 class="text-base sm:text-lg font-bold mb-4">⚽ ריאל מדריד - חדשות ועדכונים</h3>
-            
             <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
                 <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
                 <div class="p-4 sm:p-5 space-y-2">
@@ -218,7 +211,6 @@
                     <a href="https://www.realmadrid.com/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
-
             <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
                 <img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
                 <div class="p-4 sm:p-5 space-y-2">
@@ -228,7 +220,6 @@
                     <a href="https://www.realmadrid.com/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
-
             <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
                 <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
                 <div class="p-4 sm:p-5 space-y-2">
@@ -243,7 +234,6 @@
         <!-- TAB 4: CARS (3 Articles) -->
         <div id="tab-cars" class="space-y-4 hidden">
             <h3 class="text-base sm:text-lg font-bold mb-4">🚗 חדשות רכב פופולריות</h3>
-            
             <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
                 <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
                 <div class="p-4 sm:p-5 space-y-2">
@@ -253,7 +243,6 @@
                     <a href="https://www.autocar.co.uk/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
-
             <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
                 <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
                 <div class="p-4 sm:p-5 space-y-2">
@@ -263,7 +252,6 @@
                     <a href="https://www.autocar.co.uk/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
-
             <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
                 <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
                 <div class="p-4 sm:p-5 space-y-2">
@@ -292,7 +280,6 @@
             document.getElementById('btn-' + tabId).className = "pb-2 border-b-2 border-cyan-500 font-bold text-cyan-400 whitespace-nowrap focus:outline-none";
         }
 
-        // ניהול הגרף והמעבר בין נכסים (ביטקוין, דולר, S&P 500)
         let ctx = document.getElementById('financialChart').getContext('2d');
         let currentAssetData = {
             btc: { label: 'ביטקוין ($)', data: [61000, 63000, 67000, 65000, 69000, 67000, 68450], color: '#facc15' },
@@ -341,13 +328,11 @@
         }
 
         function updateChartScale(scale) {
-            // סימולציית טווחים יומי, שבועי, חודשי, שנתי
             let multiplier = scale === '1D' ? 0.99 : scale === '1W' ? 1.01 : scale === '1M' ? 1.03 : 1.15;
             financialChart.data.datasets[0].data = currentAssetData.btc.data.map(val => Math.round(val * multiplier));
             financialChart.update();
         }
 
-        // שליפת נתונים חיים (דולר, ביטקוין) ומדדי פולימרקט
         async function fetchLiveData() {
             try {
                 let resUsd = await fetch('https://open.er-api.com/v6/latest/USD');
@@ -358,7 +343,7 @@
                 let btcData = await resBtc.json();
                 document.getElementById('val-btc').innerText = "$" + btcData.bitcoin.usd.toLocaleString();
             } catch (e) {
-                console.log("Fallback to cached values");
+                console.log("Fallback values used");
             }
         }
 
