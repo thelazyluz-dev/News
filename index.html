@@ -15,36 +15,33 @@
         }
         .animate-marquee {
             display: inline-block;
-            animation: marquee 30s linear infinite;
+            animation: marquee 35s linear infinite;
         }
     </style>
 </head>
-<body class="bg-gray-950 text-gray-100 min-h-screen pb-12">
+<body class="bg-gray-950 text-gray-100 min-h-screen pb-12 selection:bg-cyan-500 selection:text-white">
 
-    <!-- Header & Manual Refresh -->
-    <header class="border-b border-gray-800 bg-gray-900/90 backdrop-blur sticky top-0 z-50">
+    <header class="border-b border-gray-800 bg-gray-900/95 backdrop-blur-md sticky top-0 z-50 shadow-xl">
         <div class="max-w-4xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-3">
             <h1 class="text-xl sm:text-2xl font-black bg-gradient-to-r from-red-500 via-yellow-500 to-cyan-400 bg-clip-text text-transparent text-center sm:text-right">
                 ⚡ AI Singularity & Polymarket Hub
             </h1>
             <div class="flex items-center gap-2">
-                <button onclick="manualRefresh()" class="bg-cyan-600 hover:bg-cyan-500 text-white text-xs px-3 py-1.5 rounded-xl font-bold flex items-center gap-1 shadow transition">
+                <button onclick="manualRefresh()" class="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-xs px-3.5 py-2 rounded-xl font-bold flex items-center gap-1.5 shadow-lg transition transform active:scale-95">
                     🔄 רענן עכשיו
                 </button>
-                <span id="update-time" class="text-xs bg-red-950 text-red-400 border border-red-800 px-3 py-1 rounded-full font-bold animate-pulse">
-                    🔴 מעודכן כעת
+                <span id="update-time" class="text-xs bg-red-950/80 text-red-400 border border-red-800/60 px-3 py-1.5 rounded-full font-bold animate-pulse">
+                    🔴 מעודכן: 18:41 - 27/07/2026
                 </span>
             </div>
         </div>
-        <!-- Live News Ticker -->
-        <div class="bg-gray-900 border-t border-gray-800 py-2 px-4 overflow-hidden flex items-center whitespace-nowrap">
+        <div class="bg-gray-900/90 border-t border-gray-800/80 py-2 px-4 overflow-hidden flex items-center whitespace-nowrap">
             <span class="bg-red-600 text-white text-[10px] px-2 py-0.5 rounded font-bold ml-3 z-10 shadow">⚡ מבזקים</span>
             <div class="overflow-hidden w-full relative">
-                <div class="animate-marquee text-xs text-gray-300">
-                    <span class="ml-8">[21:00] פריצת דרך במודלי AGI חדשים מעוררת דיונים סוערים במעבדות המחקר.</span>
-                    <span class="ml-8">[20:45] ריאל מדריד נערכת למשחק העונה בסגל מלא לקראת האתגר הבא.</span>
-                    <span class="ml-8">[20:30] שער הדולר והשווקים הפיננסיים מגיבים לתנודות הגלובליות.</span>
-                    <span class="ml-8">[20:15] חברות טכנולוגיה בישראל מציגות פתרונות אבטחה מתקדמים ל-AI.</span>
+                <div class="animate-marquee text-xs text-gray-300 font-medium">
+                    <span class="ml-10">[18:41 - 27/07/2026] פריצת דרך במודלי AGI חדשים מעוררת דיונים סוערים במעבדות המחקר.</span>
+                    <span class="ml-10">[18:41 - 27/07/2026] ריאל מדריד נערכת למשחק העונה בסגל מלא לקראת האתגר באירופה.</span>
+                    <span class="ml-10">[18:41 - 27/07/2026] שער הדולר והשווקים הפיננסיים מגיבים לתנודות הגלובליות.</span>
                 </div>
             </div>
         </div>
@@ -52,215 +49,160 @@
 
     <main class="max-w-4xl mx-auto px-4 py-6 space-y-6">
 
-        <!-- Financial Ticker with Change Indicator -->
         <section class="grid grid-cols-3 gap-3">
-            <div class="bg-gray-900/90 border border-gray-800 p-3 rounded-xl text-center shadow">
+            <div class="bg-gray-900/90 border border-gray-800/80 p-3.5 rounded-2xl text-center shadow-lg">
                 <span class="text-[11px] text-gray-400 block mb-1">💱 שער הדולר</span>
                 <span id="val-usd" class="text-sm sm:text-base font-black text-green-400">3.64 ₪</span>
                 <span class="text-[10px] text-green-400 block mt-0.5 font-bold">▲ +0.4%</span>
             </div>
-            <div class="bg-gray-900/90 border border-gray-800 p-3 rounded-xl text-center shadow">
+            <div class="bg-gray-900/90 border border-gray-800/80 p-3.5 rounded-2xl text-center shadow-lg">
                 <span class="text-[11px] text-gray-400 block mb-1">₿ ביטקוין</span>
                 <span id="val-btc" class="text-sm sm:text-base font-black text-yellow-400">$68,450</span>
                 <span class="text-[10px] text-green-400 block mt-0.5 font-bold">▲ +1.2%</span>
             </div>
-            <div class="bg-gray-900/90 border border-gray-800 p-3 rounded-xl text-center shadow">
+            <div class="bg-gray-900/90 border border-gray-800/80 p-3.5 rounded-2xl text-center shadow-lg">
                 <span class="text-[11px] text-gray-400 block mb-1">📈 S&P 500</span>
                 <span id="val-sp" class="text-sm sm:text-base font-black text-cyan-400">5,620</span>
                 <span class="text-[10px] text-red-400 block mt-0.5 font-bold">▼ -0.3%</span>
             </div>
         </section>
 
-        <!-- Chart Section with Asset Switching & Scales -->
-        <section class="bg-gray-900 border border-gray-800 p-4 rounded-2xl shadow-lg space-y-3">
-            <div class="flex flex-col sm:flex-row justify-between items-center gap-2">
+        <section class="bg-gray-900 border border-gray-800/80 p-4 sm:p-5 rounded-2xl shadow-xl space-y-3">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
                 <div class="flex gap-2 text-xs">
-                    <button onclick="switchAsset('btc')" id="asset-btc" class="px-3 py-1 bg-cyan-600 rounded font-bold text-white transition">ביטקוין</button>
-                    <button onclick="switchAsset('usd')" id="asset-usd" class="px-3 py-1 bg-gray-800 rounded font-bold text-gray-300 transition">דולר/שקל</button>
-                    <button onclick="switchAsset('sp')" id="asset-sp" class="px-3 py-1 bg-gray-800 rounded font-bold text-gray-300 transition">S&P 500</button>
-                </div>
-                <div class="flex gap-1 text-[11px]">
-                    <button onclick="updateChartScale('1D')" class="px-2 py-1 bg-gray-800 hover:bg-cyan-600 rounded text-gray-300">יומי</button>
-                    <button onclick="updateChartScale('1W')" class="px-2 py-1 bg-gray-800 hover:bg-cyan-600 rounded text-gray-300">שבועי</button>
-                    <button onclick="updateChartScale('1M')" class="px-2 py-1 bg-gray-800 hover:bg-cyan-600 rounded text-gray-300">חודשי</button>
-                    <button onclick="updateChartScale('1Y')" class="px-2 py-1 bg-gray-800 hover:bg-cyan-600 rounded text-gray-300">שנתי</button>
+                    <button onclick="switchAsset('btc')" id="asset-btc" class="px-3 py-1.5 bg-cyan-600 rounded-xl font-bold text-white transition shadow">ביטקוין</button>
+                    <button onclick="switchAsset('usd')" id="asset-usd" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 rounded-xl font-bold text-gray-300 transition">דולר/שקל</button>
+                    <button onclick="switchAsset('sp')" id="asset-sp" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 rounded-xl font-bold text-gray-300 transition">S&P 500</button>
                 </div>
             </div>
-            <div class="h-48 w-full">
+            <div class="h-52 w-full">
                 <canvas id="financialChart"></canvas>
             </div>
         </section>
 
-        <!-- Polymarket Real-Time Prediction Metrics -->
-        <section class="grid grid-cols-1 gap-4">
-            <div class="bg-gray-900 border border-gray-800 p-4 rounded-2xl shadow-lg">
-                <div class="flex justify-between items-center mb-2">
-                    <h2 class="font-bold text-cyan-400 text-sm sm:text-base flex items-center gap-2">🧠 AGI מגיע לפני 2030 (Polymarket)</h2>
-                    <span class="text-lg font-black">74%</span>
-                </div>
-                <div class="w-full bg-gray-800 h-2.5 rounded-full overflow-hidden mb-1.5">
-                    <div class="bg-cyan-500 h-full rounded-full" style="width: 74%"></div>
-                </div>
-                <p class="text-[11px] text-gray-400">הסתברות חזויה בחוזים הפתוחים ברשת</p>
-            </div>
-
-            <div class="bg-gray-900 border border-gray-800 p-4 rounded-2xl shadow-lg">
-                <div class="flex justify-between items-center mb-2">
-                    <h2 class="font-bold text-red-500 text-sm sm:text-base flex items-center gap-2">🚨 עצירת פיתוח AI עולמית השנה</h2>
-                    <span class="text-lg font-black text-red-500">32%</span>
-                </div>
-                <div class="w-full bg-gray-800 h-2.5 rounded-full overflow-hidden mb-1.5">
-                    <div class="bg-red-600 h-full rounded-full" style="width: 32%"></div>
-                </div>
-                <p class="text-[11px] text-gray-400">סיכוי לפי חוזי חיתום רגולטוריים</p>
-            </div>
-
-            <div class="bg-gray-900 border border-gray-800 p-4 rounded-2xl shadow-lg">
-                <div class="flex justify-between items-center mb-2">
-                    <h2 class="font-bold text-yellow-500 text-sm sm:text-base flex items-center gap-2">🚀 השקת משימה מאוישת למאדים עד 2028</h2>
-                    <span class="text-lg font-black text-yellow-500">45%</span>
-                </div>
-                <div class="w-full bg-gray-800 h-2.5 rounded-full overflow-hidden mb-1.5">
-                    <div class="bg-yellow-500 h-full rounded-full" style="width: 45%"></div>
-                </div>
-                <p class="text-[11px] text-gray-400">הערכת שוק ההימורים הטכנולוגי</p>
-            </div>
-        </section>
-
-        <!-- Navigation Tabs -->
-        <div class="flex border-b border-gray-800 gap-4 overflow-x-auto text-sm pb-1">
-            <button onclick="switchTab('global')" id="btn-global" class="pb-2 border-b-2 border-cyan-500 font-bold text-cyan-400 whitespace-nowrap focus:outline-none">🌐 עולמי (פוסט-מחסור וסיכונים)</button>
-            <button onclick="switchTab('israel')" id="btn-israel" class="pb-2 border-b-2 border-transparent text-gray-400 hover:text-gray-200 whitespace-nowrap focus:outline-none">🇮🇱 חדשות ישראל</button>
-            <button onclick="switchTab('madrid')" id="btn-madrid" class="pb-2 border-b-2 border-transparent text-gray-400 hover:text-gray-200 whitespace-nowrap focus:outline-none">⚽ ריאל מדריד</button>
-            <button onclick="switchTab('cars')" id="btn-cars" class="pb-2 border-b-2 border-transparent text-gray-400 hover:text-gray-200 whitespace-nowrap focus:outline-none">🚗 רכב פופולרי</button>
+        <div class="flex border-b border-gray-800 gap-6 overflow-x-auto text-sm pb-2 pt-2">
+            <button onclick="switchTab('global')" id="btn-global" class="pb-2 border-b-2 border-cyan-500 font-bold text-cyan-400 whitespace-nowrap focus:outline-none transition">🌐 עולמי</button>
+            <button onclick="switchTab('israel')" id="btn-israel" class="pb-2 border-b-2 border-transparent text-gray-400 hover:text-gray-200 whitespace-nowrap focus:outline-none transition">🇮🇱 ישראל</button>
+            <button onclick="switchTab('madrid')" id="btn-madrid" class="pb-2 border-b-2 border-transparent text-gray-400 hover:text-gray-200 whitespace-nowrap focus:outline-none transition">⚽ ריאל מדריד</button>
+            <button onclick="switchTab('cars')" id="btn-cars" class="pb-2 border-b-2 border-transparent text-gray-400 hover:text-gray-200 whitespace-nowrap focus:outline-none transition">🚗 רכב</button>
         </div>
 
-        <!-- TAB 1: GLOBAL (3 Articles) -->
+        <!-- TAB GLOBAL -->
         <div id="tab-global" class="space-y-4">
             <h3 class="text-base sm:text-lg font-bold mb-4">🔥 הכתבות המובילות בעולם</h3>
-            <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
+
+            <article class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-lg">
                 <div class="p-4 sm:p-5 space-y-2">
-                    <span class="bg-red-950 text-red-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">רמת וואו: 10/10</span>
-                    <h4 class="text-base font-bold">אזהרות חמורות מעולם המחקר: נקודת האל-חזור של AGI</h4>
-                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: חוקרים בכירים מעלים דאגה עמוקה מכך שמודלי בינה מלאכותית מתקדמים מתחילים לפתח יכולות תכנון עצמאיות העקפות את בקרות הבטיחות האנושיות.</p>
-                    <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
+                    <span class="bg-red-950 text-red-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">חי מהרשת</span>
+                    <h4 class="text-base font-bold">OpenAI called the Hugging Face attack unprecedented. But we’ve been here before.</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox fir...</p>
+                    <a href="https://www.technologyreview.com/2026/07/27/1140836/openai-hugging-face-attack-precedent/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
-            <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
+        
+            <article class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-lg">
                 <div class="p-4 sm:p-5 space-y-2">
-                    <span class="bg-orange-950 text-orange-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">רמת וואו: 9.5/10</span>
-                    <h4 class="text-base font-bold">המעבר המהיר לכלכלת פוסט-מחסור הודות לרובוטיקה</h4>
-                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: שילוב סוכנים אוטונומיים ורובוטים דמויי אדם בתעשייה מוביל לצניחה חדה בעלויות הייצור, מה שמאותת על שינוי מבני היסטורי במושג העבודה.</p>
-                    <a href="https://www.wired.com/tag/artificial-intelligence/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
+                    <span class="bg-red-950 text-red-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">חי מהרשת</span>
+                    <h4 class="text-base font-bold">How lasers could help provide fuel for nuclear reactors</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">Outside the small town of Paducah, Kentucky, a wealth of uranium is locked away in thousands of storage cylinders filled...</p>
+                    <a href="https://www.technologyreview.com/2026/07/27/1140798/laser-nuclear-enrichment/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
-            <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
+        
+            <article class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-lg">
                 <div class="p-4 sm:p-5 space-y-2">
-                    <span class="bg-cyan-950 text-cyan-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">רמת וואו: 9/10</span>
-                    <h4 class="text-base font-bold">מרכזי נתונים עצומים מופעי אנרגיה גרעינית</h4>
-                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: ענקיות הטכנולוגיה חותמות על הסכמי ענק לאספקת חשמל ישירה מכורים גרעיניים כדי לעמוד בדרישות החשמל של חוות השרתים העתידיות.</p>
-                    <a href="https://www.theverge.com/ai-artificial-intelligence" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
+                    <span class="bg-red-950 text-red-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">חי מהרשת</span>
+                    <h4 class="text-base font-bold">The Download: lasers for nuclear fuel, and organ preservation advances</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">This is today&#8217;s edition of The Download, our weekday newsletter that provides a daily dose of what&#8217;s going o...</p>
+                    <a href="https://www.technologyreview.com/2026/07/27/1140833/the-download-lasers-nuclear-organ-preservation/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
+        
         </div>
 
-        <!-- TAB 2: ISRAEL (3 Articles) -->
+        <!-- TAB ISRAEL -->
         <div id="tab-israel" class="space-y-4 hidden">
-            <h3 class="text-base sm:text-lg font-bold mb-4">🇮🇱 עדכונים חיים וטכנולוגיה בישראל</h3>
-            <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
+            <h3 class="text-base sm:text-lg font-bold mb-4">🇮🇱 עדכונים חיים בישראל</h3>
+
+            <article class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-lg">
                 <div class="p-4 sm:p-5 space-y-2">
-                    <span class="bg-blue-950 text-blue-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">ישראל • סטארט-אפים</span>
-                    <h4 class="text-base font-bold">האקו-סיסטם המקומי מוביל בפיתוח כלי הגנה ל-AI</h4>
-                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: חברות הזנק ישראליות מציגות פתרונות חדשניים לאבטחת מודלי שפה ארגוניים מפני מתקפות סייבר מתקדמות וגניבת מידע רגיש.</p>
-                    <a href="https://www.geektime.co.il/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
+                    <span class="bg-blue-950 text-blue-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">ישראל</span>
+                    <h4 class="text-base font-bold">תזכורת ידידותית: ירח הדבש שלכם עם HBO Max מסתיים</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">אחרי שנים של שמועות, דחיות, הדלפות ועוד דחיות &#8211; שירות הסטרימינג הפופולרי HBO Max הושק בישראל באופן רשמי בחודש ינוא...</p>
+                    <a href="https://www.geektime.co.il/hbo-max-honeymoon-in-israel-is-over/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
-            <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
+        
+            <article class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-lg">
                 <div class="p-4 sm:p-5 space-y-2">
-                    <span class="bg-blue-950 text-blue-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">ישראל • פיתוח</span>
-                    <h4 class="text-base font-bold">מרכזי הפיתוח הבינלאומיים בארץ מרחיבים את פעילות ה-AI</h4>
-                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: ענקיות הטכנולוגיה ממשיכות להשקיע בישראל ומקימות צוותי מחקר ייעודיים המתמקדים בארכיטקטורת חומרה ושבבים מתקדמים.</p>
-                    <a href="https://www.calcalist.co.il/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
+                    <span class="bg-blue-950 text-blue-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">ישראל</span>
+                    <h4 class="text-base font-bold">גיוס ענק: בכירים מ-OpenAI ואנת'רופיק משקיעים בסטארטאפ ישראלי שמאלף רובוטים</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">אנחנו כבר רגילים לזה שהבינה המלאכותית כותבת לנו קוד, מנסחת אימיילים ואפילו מג'נרטת תמונות מדהימות בתוך שניות. אבל כשזה מ...</p>
+                    <a href="https://www.geektime.co.il/enigma-71m-seed-physical-ai/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
-            <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
+        
+            <article class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-lg">
                 <div class="p-4 sm:p-5 space-y-2">
-                    <span class="bg-blue-950 text-blue-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">ישראל • סמיקונדקטורס</span>
-                    <h4 class="text-base font-bold">תעשיית השבבים הישראלית מזנקת עם פתרונות עיבוד חכמים</h4>
-                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: פיתוחים חדשים של מעבדים ייעודיים ללמידת מכונה יוצאים לשוק המקומי ומעוררים עניין רב בקרב משקיעים זרים.</p>
-                    <a href="https://www.geektime.co.il/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
+                    <span class="bg-blue-950 text-blue-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">ישראל</span>
+                    <h4 class="text-base font-bold">מהפכה בסופר: טיב טעם מבטלת את כל הקופות ברשת</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">בשנים האחרונות התרגלנו כבר לצפצופים של עמדות התשלום העצמאיות ולסריקות של מוצרים עם סורק, הכל כדי להימנע מעמידה בתור לקופ...</p>
+                    <a href="https://www.geektime.co.il/tiv-taam-cancels-all-checkouts/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
+        
         </div>
 
-        <!-- TAB 3: REAL MADRID (3 Articles) -->
+        <!-- TAB MADRID -->
         <div id="tab-madrid" class="space-y-4 hidden">
-            <h3 class="text-base sm:text-lg font-bold mb-4">⚽ ריאל מדריד - חדשות ועדכונים</h3>
-            <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
+            <h3 class="text-base sm:text-lg font-bold mb-4">⚽ ריאל מדריד</h3>
+            <article class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-lg">
                 <div class="p-4 sm:p-5 space-y-2">
                     <span class="bg-purple-950 text-purple-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">ריאל מדריד</span>
-                    <h4 class="text-base font-bold">ההכנות לקראת משחק העונה: הסגל המלא מתאמן בבנייה טקטית</h4>
-                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: צוות האימון מתמקד בשיפור משחק הלחץ ובשילוב הכוכבים הצעירים בהרכב הפותח לקראת האתגרים הקרובים.</p>
-                    <a href="https://www.realmadrid.com/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
-                </div>
-            </article>
-            <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
-                <div class="p-4 sm:p-5 space-y-2">
-                    <span class="bg-purple-950 text-purple-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">רכש וחוזים</span>
-                    <h4 class="text-base font-bold">עדכונים מחדר ההלבשה: עתידם של שחקני המפתח במועדון</h4>
-                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: דיווחים מספרד על ההערכות לקראת חלון ההעברות הבא והתוכניות האסטרטגיות של הנהלת הבלאנקוס.</p>
-                    <a href="https://www.realmadrid.com/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
-                </div>
-            </article>
-            <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
-                <div class="p-4 sm:p-5 space-y-2">
-                    <span class="bg-purple-950 text-purple-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">ליגת האלופות</span>
-                    <h4 class="text-base font-bold">היערכות מיוחדת לקראת שלבי הנוקאאוט האירופיים</h4>
-                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: המאמן מציג תוכנית עבודה פרטנית לשמירה על כשירות השחקנים עמוק לתוך העונה האירופית הצפופה.</p>
-                    <a href="https://www.realmadrid.com/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
+                    <h4 class="text-base font-bold">ההכנות לקראת משחק העונה בסגל מלא</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">צוות האימון מתמקד בשיפור משחק הלחץ ובשילוב הכוכבים הצעירים בהרכב.</p>
+                    <a href="https://www.realmadrid.com" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
         </div>
 
-        <!-- TAB 4: CARS (3 Articles) -->
+        <!-- TAB CARS -->
         <div id="tab-cars" class="space-y-4 hidden">
-            <h3 class="text-base sm:text-lg font-bold mb-4">🚗 חדשות רכב פופולריות</h3>
-            <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
+            <h3 class="text-base sm:text-lg font-bold mb-4">🚗 חדשות רכב</h3>
+
+            <article class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-lg">
                 <div class="p-4 sm:p-5 space-y-2">
-                    <span class="bg-green-950 text-green-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">רכב חם • חשמליות</span>
-                    <h4 class="text-base font-bold">דור העתיד של הרכבים החשמליים: טווח נסיעה וטעינה אבסולוטית</h4>
-                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: יצרניות הרכב המובילות חושפות טכנולוגיות סוללה חדשות המאפשרות טעינה מלאה בתוך דקות ספורות בלבד.</p>
-                    <a href="https://www.autocar.co.uk/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
+                    <span class="bg-green-950 text-green-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">רכב</span>
+                    <h4 class="text-base font-bold">Mercedes G-Class Cabriolet returns after nearly a decade off sale</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">New images show drop-top G-Class with its roof down as its launch date approaches
+
+Mercedes-Benz is reviving the G-Cla...</p>
+                    <a href="https://www.autocar.co.uk/car-news/new-cars/mercedes-g-class-cabriolet-returns-after-nearly-decade-sale" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
-            <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
+        
+            <article class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-lg">
                 <div class="p-4 sm:p-5 space-y-2">
-                    <span class="bg-green-950 text-green-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">טכנולוגיה ברכב</span>
-                    <h4 class="text-base font-bold">מערכות נהיגה אוטונומיות מתקדמות הופכות לתקן החדש</h4>
-                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: סקירה של מערכות העזר החדשות לנהג המשלבות חיישני ליידר מתקדמים ויכולות עיבוד מבוססות בינה מלאכותית.</p>
-                    <a href="https://www.autocar.co.uk/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
+                    <span class="bg-green-950 text-green-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">רכב</span>
+                    <h4 class="text-base font-bold">Why this year's Festival of the Unexceptional was the best yet</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">Well-used Volkswagen Polo was the big winner from the annual celebration of brilliantly mundane motors
+
+Find me anothe...</p>
+                    <a href="https://www.autocar.co.uk/car-news/features/why-years-festival-unexceptional-was-best-yet" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
-            <article class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=800&auto=format&fit=crop" class="w-full h-40 object-cover">
+        
+            <article class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden shadow-lg">
                 <div class="p-4 sm:p-5 space-y-2">
-                    <span class="bg-green-950 text-green-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">רכבי על</span>
-                    <h4 class="text-base font-bold">מכוניות העל החשמליות ששברו את שיאי המהירות במסלול</h4>
-                    <p class="text-gray-400 text-xs leading-relaxed">תמצית: דגמי הביצועים הקיצוניים ביותר לשנת 2026 מציגים הספקים אדירים של מעל 1,500 כוחות סוס.</p>
-                    <a href="https://www.autocar.co.uk/" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
+                    <span class="bg-green-950 text-green-400 text-[10px] px-2.5 py-0.5 rounded-full font-bold">רכב</span>
+                    <h4 class="text-base font-bold">Aion V</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">EV from Chinese giant GAC targets quality, safety and mid-market value
+
+The Aion V is the European debut model of one...</p>
+                    <a href="https://www.autocar.co.uk/car-review/aion/v" target="_blank" class="inline-block pt-2 text-cyan-400 hover:underline text-xs font-bold">לקריאת הכתבה המלאה ↗</a>
                 </div>
             </article>
+        
         </div>
 
     </main>
@@ -269,15 +211,14 @@
         AI Singularity & Polymarket Hub © 2026 • מעודכן אוטומטית בכל שעה עגולה
     </footer>
 
-    <!-- JavaScript logic -->
     <script>
         function switchTab(tabId) {
             ['global', 'israel', 'madrid', 'cars'].forEach(t => {
                 document.getElementById('tab-' + t).classList.add('hidden');
-                document.getElementById('btn-' + t).className = "pb-2 border-b-2 border-transparent text-gray-400 hover:text-gray-200 whitespace-nowrap focus:outline-none";
+                document.getElementById('btn-' + t).className = "pb-2 border-b-2 border-transparent text-gray-400 hover:text-gray-200 whitespace-nowrap focus:outline-none transition";
             });
             document.getElementById('tab-' + tabId).classList.remove('hidden');
-            document.getElementById('btn-' + tabId).className = "pb-2 border-b-2 border-cyan-500 font-bold text-cyan-400 whitespace-nowrap focus:outline-none";
+            document.getElementById('btn-' + tabId).className = "pb-2 border-b-2 border-cyan-500 font-bold text-cyan-400 whitespace-nowrap focus:outline-none transition";
         }
 
         let ctx = document.getElementById('financialChart').getContext('2d');
@@ -315,9 +256,9 @@
             ['btc', 'usd', 'sp'].forEach(k => {
                 let btn = document.getElementById('asset-' + k);
                 if(k === assetKey) {
-                    btn.className = "px-3 py-1 bg-cyan-600 rounded font-bold text-white transition";
+                    btn.className = "px-3 py-1.5 bg-cyan-600 rounded-xl font-bold text-white transition shadow";
                 } else {
-                    btn.className = "px-3 py-1 bg-gray-800 rounded font-bold text-gray-300 transition";
+                    btn.className = "px-3 py-1.5 bg-gray-800 hover:bg-gray-700 rounded-xl font-bold text-gray-300 transition";
                 }
             });
             let asset = currentAssetData[assetKey];
@@ -327,38 +268,9 @@
             financialChart.update();
         }
 
-        function updateChartScale(scale) {
-            let multiplier = scale === '1D' ? 0.99 : scale === '1W' ? 1.01 : scale === '1M' ? 1.03 : 1.15;
-            financialChart.data.datasets[0].data = currentAssetData.btc.data.map(val => Math.round(val * multiplier));
-            financialChart.update();
-        }
-
-        async function fetchLiveData() {
-            try {
-                let resUsd = await fetch('https://open.er-api.com/v6/latest/USD');
-                let usdData = await resUsd.json();
-                document.getElementById('val-usd').innerText = usdData.rates.ILS.toFixed(2) + " ₪";
-
-                let resBtc = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
-                let btcData = await resBtc.json();
-                document.getElementById('val-btc').innerText = "$" + btcData.bitcoin.usd.toLocaleString();
-            } catch (e) {
-                console.log("Fallback values used");
-            }
-        }
-
         function manualRefresh() {
-            const btn = document.getElementById('update-time');
-            btn.innerText = "🔄 מעדכן נתונים...";
-            fetchLiveData().then(() => {
-                setTimeout(() => {
-                    btn.innerText = "🔴 מעודכן כעת";
-                    window.location.reload();
-                }, 500);
-            });
+            window.location.reload();
         }
-
-        fetchLiveData();
     </script>
 </body>
 </html>
