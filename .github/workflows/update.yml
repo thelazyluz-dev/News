@@ -1,0 +1,27 @@
+name: Hourly Automated Update
+
+on:
+  schedule:
+    - cron: '0 * * * *' # רץ בכל שעה עגולה
+  workflow_dispatch:      # מאפשר הפעלה ידנית מתי שתרצה
+
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Update timestamp
+        run: |
+          echo "Updating site at $(date)"
+          # כאן הסקריפט יעדכן את שעת הריצה והנתונים
+          
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "AI Automation Bot"
+          git config --global user.email "bot@users.noreply.github.com"
+          git commit -am "Hourly auto-update: $(date)" || exit 0
+          git push
